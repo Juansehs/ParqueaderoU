@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,17 +8,20 @@ public class Parqueadero {
     private HashMap<String,Registro> vehiculos;
     private int cantidadEspaciosTotal;
     private List<Registro> historialTotalVehiculos;
+    private String[] parquins;
 
 
     public Parqueadero() {
     }
-    public Parqueadero(String nombre, HashMap<String, Registro> vehiculos, int cantidadEspaciosTotal, List<Registro> historialTotalVehiculos) {
+    public Parqueadero(String nombre, HashMap<String, Registro> vehiculos, int cantidadEspaciosTotal, List<Registro> historialTotalVehiculos,String[] parquins) {
         this.nombre = nombre;
         this.vehiculos = vehiculos;
         this.cantidadEspaciosTotal = cantidadEspaciosTotal;
         this.historialTotalVehiculos = historialTotalVehiculos;
+        this.parquins = parquins;
     }
-
+    public String[] getParquins(){ return parquins; }
+    public void setParquins(String[] parquins){ this.parquins = parquins; }
     public String getNombre() {
         return nombre;
     }
@@ -60,7 +64,19 @@ public class Parqueadero {
                 '}';
     }
 
-    public void mostrarHistorialReservas(){
+    public void mostrarHistorial(LocalDateTime fechaHoraInicioFiltro,LocalDateTime fechaHoraFinFiltro){
+
+    }
+    public void mostrarEspaciosLibres(){
+
+    }
+    public void mostrarVehiculosActivosParquedero(){
+
+    }
+    public void agregarRegistro(Registro registro){
+
+    }
+    public void cerrarRegistro(String Parquin){
 
     }
 }

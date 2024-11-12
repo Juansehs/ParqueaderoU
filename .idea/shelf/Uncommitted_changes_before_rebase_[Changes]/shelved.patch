@@ -1,0 +1,282 @@
+Index: src/Parqueadero.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.HashMap;\r\nimport java.util.List;\r\n\r\npublic class Parqueadero {\r\n\r\n    private String nombre;\r\n    private HashMap<String,Registro> vehiculos;\r\n    private int cantidadEspaciosTotal;\r\n    private List<Registro> historialTotalVehiculos;\r\n\r\n\r\n    public Parqueadero() {\r\n    }\r\n    public Parqueadero(String nombre, HashMap<String, Registro> vehiculos, int cantidadEspaciosTotal, List<Registro> historialTotalVehiculos) {\r\n        this.nombre = nombre;\r\n        this.vehiculos = vehiculos;\r\n        this.cantidadEspaciosTotal = cantidadEspaciosTotal;\r\n        this.historialTotalVehiculos = historialTotalVehiculos;\r\n    }\r\n\r\n    public String getNombre() {\r\n        return nombre;\r\n    }\r\n\r\n    public void setNombre(String nombre) {\r\n        this.nombre = nombre;\r\n    }\r\n\r\n    public HashMap<String, Registro> getVehiculos() {\r\n        return vehiculos;\r\n    }\r\n\r\n    public void setVehiculos(HashMap<String, Registro> vehiculos) {\r\n        this.vehiculos = vehiculos;\r\n    }\r\n\r\n    public int getCantidadEspaciosTotal() {\r\n        return cantidadEspaciosTotal;\r\n    }\r\n\r\n    public void setCantidadEspaciosTotal(int cantidadEspaciosTotal) {\r\n        this.cantidadEspaciosTotal = cantidadEspaciosTotal;\r\n    }\r\n\r\n    public List<Registro> getHistorialTotalVehiculos() {\r\n        return historialTotalVehiculos;\r\n    }\r\n\r\n    public void setHistorialTotalVehiculos(List<Registro> historialTotalVehiculos) {\r\n        this.historialTotalVehiculos = historialTotalVehiculos;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Parqueadero{\" +\r\n                \"nombre='\" + nombre + '\\'' +\r\n                \", vehiculos=\" + vehiculos +\r\n                \", cantidadEspaciosTotal=\" + cantidadEspaciosTotal +\r\n                \", historialTotalVehiculos=\" + historialTotalVehiculos +\r\n                '}';\r\n    }\r\n\r\n    public void mostrarHistorialReservas(){\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Parqueadero.java b/src/Parqueadero.java
+--- a/src/Parqueadero.java	(revision eda4450f801e8eed56609e4ec48bfb81541ace97)
++++ b/src/Parqueadero.java	(date 1731276233330)
+@@ -1,3 +1,4 @@
++import java.time.LocalDateTime;
+ import java.util.HashMap;
+ import java.util.List;
+ 
+@@ -7,17 +8,20 @@
+     private HashMap<String,Registro> vehiculos;
+     private int cantidadEspaciosTotal;
+     private List<Registro> historialTotalVehiculos;
++    private String[] parquins;
+ 
+ 
+     public Parqueadero() {
+     }
+-    public Parqueadero(String nombre, HashMap<String, Registro> vehiculos, int cantidadEspaciosTotal, List<Registro> historialTotalVehiculos) {
++    public Parqueadero(String nombre, HashMap<String, Registro> vehiculos, int cantidadEspaciosTotal, List<Registro> historialTotalVehiculos,String[] parquins) {
+         this.nombre = nombre;
+         this.vehiculos = vehiculos;
+         this.cantidadEspaciosTotal = cantidadEspaciosTotal;
+         this.historialTotalVehiculos = historialTotalVehiculos;
++        this.parquins = parquins;
+     }
+-
++    public String[] getParquins(){ return parquins; }
++    public void setParquins(String[] parquins){ this.parquins = parquins; }
+     public String getNombre() {
+         return nombre;
+     }
+@@ -60,7 +64,19 @@
+                 '}';
+     }
+ 
+-    public void mostrarHistorialReservas(){
++    public void mostrarHistorial(LocalDateTime fechaHoraInicioFiltro,LocalDateTime fechaHoraFinFiltro){
++
++    }
++    public void mostrarEspaciosLibres(){
++
++    }
++    public void mostrarVehiculosActivosParquedero(){
++
++    }
++    public void agregarRegistro(Registro registro){
++
++    }
++    public void cerrarRegistro(String Parquin){
+ 
+     }
+ }
+\ No newline at end of file
+Index: src/Usuario.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>abstract public class Usuario {\r\n\r\n    private String nombre;\r\n\r\n    public String getNombre() {\r\n        return nombre;\r\n    }\r\n\r\n    public void setNombre(String nombre) {\r\n        this.nombre = nombre;\r\n    }\r\n\r\n    public abstract void mostrarInfo();\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Usuario.java b/src/Usuario.java
+--- a/src/Usuario.java	(revision eda4450f801e8eed56609e4ec48bfb81541ace97)
++++ b/src/Usuario.java	(date 1731279678657)
+@@ -1,7 +1,17 @@
+ abstract public class Usuario {
+ 
+     private String nombre;
++    private String cedula;
++    private String[] objetos;
++    
++    public void setObjetos(String[] objetos){ this.objetos = objetos; }
++    
++    public String[] getObjetos(){ return objetos; }
+ 
++    public void setCedula(String cedula){ this.cedula = cedula; }
++    
++    public String getCedula(){ return cedula; }
++    
+     public String getNombre() {
+         return nombre;
+     }
+Index: src/Docente.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Docente.java b/src/Docente.java
+new file mode 100644
+--- /dev/null	(date 1731279678719)
++++ b/src/Docente.java	(date 1731279678719)
+@@ -0,0 +1,24 @@
++public class Docente extends Usuario{
++
++    private boolean activo;
++
++    public boolean getActivo() {
++        return activo;
++    }
++
++    public void setActivo(boolean activo) {
++        this.activo = activo;
++    }
++
++    @Override
++    public void mostrarInfo(){
++        System.out.println("El usuario es Docente, nombre: "+getNombre()+", documento: "+getCedula()+", el usuario esta "+(getActivo() ? "Activo":"Desactivo")+" en el sistema");
++        if(getObjetos().length!=0){
++            String[] objetos = getObjetos().clone();
++            System.out.println("Objetos que trae el usuario: ");
++            for (int i=0;i<objetos.length;i++){
++                System.out.println("("+i+") "+objetos[i]);
++            }
++        }
++    }
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"fd26b110-23f5-4fc2-990a-7ada5f13acc7\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/Parqueadero.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/Usuario.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\"><![CDATA[{\r\n  \"lastFilter\": {\r\n    \"state\": \"OPEN\",\r\n    \"assignee\": \"miguelon02\"\r\n  }\r\n}]]></component>\r\n  <component name=\"GithubPullRequestsUISettings\"><![CDATA[{\r\n  \"selectedUrlAndAccountId\": {\r\n    \"url\": \"https://github.com/Juansehs/ParqueaderoU.git\",\r\n    \"accountId\": \"fb09dbc1-a4b2-400f-9497-bdaeb37fa49a\"\r\n  }\r\n}]]></component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2oAfnzdO2BG6Kx1HY0keHpFid8n\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"MiguelR\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/miguel/Desktop/quiz/ParqueaderoU\",\r\n    \"onboarding.tips.debug.path\": \"C:/Users/juans/IdeaProjectsp/ParqueaderoU/src/Main.java\",\r\n    \"settings.editor.selected.configurable\": \"org.jetbrains.plugins.github.ui.GithubSettingsConfigurable\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"fd26b110-23f5-4fc2-990a-7ada5f13acc7\" name=\"Changes\" comment=\"\" />\r\n      <created>1730317474406</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1730317474406</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/Main.java</url>\r\n          <line>11</line>\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision eda4450f801e8eed56609e4ec48bfb81541ace97)
++++ b/.idea/workspace.xml	(date 1731280196904)
+@@ -5,9 +5,13 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="fd26b110-23f5-4fc2-990a-7ada5f13acc7" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/src/Parqueadero.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/Usuario.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Docente.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Estudiante.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Visitante.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Parqueadero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parqueadero.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Usuario.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -24,16 +28,16 @@
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+-  "lastFilter": {
+-    "state": "OPEN",
+-    "assignee": "miguelon02"
++  <component name="GitHubPullRequestSearchHistory">{
++  &quot;lastFilter&quot;: {
++    &quot;state&quot;: &quot;OPEN&quot;,
++    &quot;assignee&quot;: &quot;miguelon02&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="GithubPullRequestsUISettings"><![CDATA[{
+   "selectedUrlAndAccountId": {
+     "url": "https://github.com/Juansehs/ParqueaderoU.git",
+-    "accountId": "fb09dbc1-a4b2-400f-9497-bdaeb37fa49a"
++    "accountId": "f033f7ac-ec84-4d12-91cd-d68efe6e5afe"
+   }
+ }]]></component>
+   <component name="ProjectColorInfo">{
+@@ -45,16 +49,16 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "git-widget-placeholder": "MiguelR",
+-    "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "C:/Users/miguel/Desktop/quiz/ParqueaderoU",
+-    "onboarding.tips.debug.path": "C:/Users/juans/IdeaProjectsp/ParqueaderoU/src/Main.java",
+-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;MiguelR&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/miguel/Desktop/quiz/ParqueaderoU&quot;,
++    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/juans/IdeaProjectsp/ParqueaderoU/src/Main.java&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_22\" default=\"true\" project-jdk-name=\"openjdk-22\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision eda4450f801e8eed56609e4ec48bfb81541ace97)
++++ b/.idea/misc.xml	(date 1731279681319)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_22" default="true" project-jdk-name="openjdk-22" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="openjdk-22" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/Estudiante.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Estudiante.java b/src/Estudiante.java
+new file mode 100644
+--- /dev/null	(date 1731280196766)
++++ b/src/Estudiante.java	(date 1731280196766)
+@@ -0,0 +1,23 @@
++public class Estudiante extends Usuario{
++    private boolean activo;
++
++    public boolean getActivo() {
++        return activo;
++    }
++
++    public void setActivo(boolean activo) {
++        this.activo = activo;
++    }
++
++    @Override
++    public void mostrarInfo(){
++        System.out.println("El usuario es Estudiante, nombre: "+getNombre()+", documento: "+getCedula()+", el usuario esta "+(getActivo() ? "Activo":"Desactivo")+" en el sistema");
++        if(getObjetos().length!=0){
++            String[] objetos = getObjetos().clone();
++            System.out.println("Objetos que trae el usuario: ");
++            for (int i=0;i<objetos.length;i++){
++                System.out.println("("+i+") "+objetos[i]);
++            }
++        }
++    }
++}
+Index: src/Visitante.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Visitante.java b/src/Visitante.java
+new file mode 100644
+--- /dev/null	(date 1731280196766)
++++ b/src/Visitante.java	(date 1731280196766)
+@@ -0,0 +1,23 @@
++public class Visitante extends Usuario{
++    private String motivoVisita;
++
++    public String getMotivoVisita() {
++        return motivoVisita;
++    }
++
++    public void setMotivoVisita(String motivoVisita) {
++        this.motivoVisita = motivoVisita;
++    }
++
++    @Override
++    public void mostrarInfo(){
++        System.out.println("El usuario es Visitante, nombre: "+getNombre()+", documento: "+getCedula()+", el motivo de visita es: "+getMotivoVisita());
++        if(getObjetos().length!=0){
++            String[] objetos = getObjetos().clone();
++            System.out.println("Objetos que trae el visitante: ");
++            for (int i=0;i<objetos.length;i++){
++                System.out.println("("+i+") "+objetos[i]);
++            }
++        }
++    }
++}
