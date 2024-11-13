@@ -4,6 +4,7 @@ public class Registro {
     private Vehiculo vehiculo;
     private LocalDateTime horaEntrada;
     private LocalDateTime horaSalida;
+    private   Usuario  usuario;
 
     public Registro(Vehiculo vehiculo, LocalDateTime horaEntrada) {
         this.vehiculo = vehiculo;
